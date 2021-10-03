@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba78d66889e59044bdbbcb57004255f, type: 3}
   m_Name: SoulSloth
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: ebff4d3a34245334ebe92bcc05bca306, type: 3}
+  _sprite: {fileID: 21300000, guid: 8a4080f4fe6b96f41b19630a45cafe7f, type: 3}
   _sinType: 6

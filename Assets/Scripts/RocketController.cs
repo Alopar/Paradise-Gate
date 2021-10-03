@@ -1,19 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RocketController : MonoBehaviour
 {
-    [SerializeField] private Transform _heavenPoint;
-    [SerializeField] private Transform _normalPoint;
-    [SerializeField] private Transform _badPoint;
-    [SerializeField] private Transform _worstPoint;
+    [SerializeField] private GameObject _brokenRocket;
+    [SerializeField] private ParticleSystem _flameStream;
 
     [SerializeField, Space(10)] private float _speed;
     [SerializeField, Range(0.1f, 5f)] private float _accelerationTime = 2;
     [SerializeField] private AnimationCurve _accelerationCurve;
 
+    private Transform _heavenPoint;
+    private Transform _normalPoint;
+    private Transform _badPoint;
+    private Transform _worstPoint;
+
     private Vector3 _finishPoint;
+
+    public event Action OnExplosion;
+
+    public void SetFlyPoint(Transform heavenPoint, Transform normalPoint, Transform badPoint, Transform worstPoint)
+    {
+        _heavenPoint = heavenPoint;
+        _normalPoint = normalPoint;
+        _badPoint = badPoint;
+        _worstPoint = worstPoint;
+    }
 
     public void Launch(FuelType fuelType)
     {
@@ -33,6 +47,7 @@ public class RocketController : MonoBehaviour
                 break;
         }
 
+        _flameStream.Play();
         StartCoroutine(Fly());
     }
 
@@ -58,7 +73,11 @@ public class RocketController : MonoBehaviour
 
     private void Explosion()
     {
-        // TODO: explosion animation
+        OnExplosion?.Invoke();
+
+        var brokenRocket = Instantiate(_brokenRocket, transform.position, transform.rotation);
+
+        Destroy(gameObject);
     }
 }
 

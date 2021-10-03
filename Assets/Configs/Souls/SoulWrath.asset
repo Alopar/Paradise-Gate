@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba78d66889e59044bdbbcb57004255f, type: 3}
   m_Name: SoulWrath
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: b1131fffe693c7a4a8c1078a0ca6d73e, type: 3}
+  _sprite: {fileID: 21300000, guid: 28493cba629dcd341b2b89f25c2a1e32, type: 3}
   _sinType: 5

@@ -15,7 +15,7 @@ public class SoulController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     void Start()
     {
         _camera = Camera.main;
-        GetComponent<SpriteRenderer>().sprite = _soul.SoulConfig.Sprite;
+        GetComponentInChildren<SpriteRenderer>().sprite = _soul.SoulConfig.Sprite;
 
         GameUIManager.OnClearPot += ClearPotHandler;
     }
