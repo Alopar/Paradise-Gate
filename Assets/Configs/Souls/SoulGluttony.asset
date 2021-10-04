@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba78d66889e59044bdbbcb57004255f, type: 3}
   m_Name: SoulGluttony
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: e55b5dd6863cbd74082f04fba2c3428c, type: 3}
+  _glife: {fileID: 21300000, guid: 14ba3f0f6ad9d664e846b558aa6bc51b, type: 3}
+  _sprite: {fileID: 21300000, guid: 6b268aa88a2b92b48ac790b90d8fc13c, type: 3}
   _sinType: 4

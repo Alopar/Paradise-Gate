@@ -9,6 +9,7 @@ public class RocketController : MonoBehaviour
     [SerializeField] private ParticleSystem _flameStream;
 
     [SerializeField, Space(10)] private float _speed;
+    [SerializeField, Range(1f, 10f)] private float _rotateSpeed;
     [SerializeField, Range(0.1f, 5f)] private float _accelerationTime = 2;
     [SerializeField] private AnimationCurve _accelerationCurve;
 
@@ -19,7 +20,9 @@ public class RocketController : MonoBehaviour
 
     private Vector3 _finishPoint;
 
+    public event Action OnFly;
     public event Action OnExplosion;
+    public event Action OnBigExplosion;
 
     public void SetFlyPoint(Transform heavenPoint, Transform normalPoint, Transform badPoint, Transform worstPoint)
     {
@@ -49,10 +52,14 @@ public class RocketController : MonoBehaviour
 
         _flameStream.Play();
         StartCoroutine(Fly());
+        AudioManager.Play("RocketFly");
     }
 
+    [Obsolete]
     private IEnumerator Fly()
     {
+        var currentRotateSpeed = _rotateSpeed;
+
         var accelerationTimer = _accelerationTime;
         while (true)
         {
@@ -63,7 +70,12 @@ public class RocketController : MonoBehaviour
 
             transform.position = Vector3.MoveTowards(transform.position, _finishPoint, currentSpeed);
 
-            if(transform.position == _finishPoint) break;
+            var currentRotate = currentSpeed * accelaration;
+            transform.RotateAround(Vector3.up, currentRotate);
+
+            OnFly?.Invoke();
+
+            if (transform.position == _finishPoint) break;
 
             yield return new WaitForFixedUpdate();
         }
@@ -72,10 +84,22 @@ public class RocketController : MonoBehaviour
     }
 
     private void Explosion()
-    {
-        OnExplosion?.Invoke();
+    {        
+        AudioManager.Stop("RocketFly");
+        
 
-        var brokenRocket = Instantiate(_brokenRocket, transform.position, transform.rotation);
+        if (_finishPoint == _heavenPoint.position)
+        {
+            AudioManager.Play("BigExplosion");            
+            OnBigExplosion?.Invoke();
+        }
+        else
+        {
+            AudioManager.Play("Fail");
+            AudioManager.Play("Explosion");         
+            OnExplosion?.Invoke();
+            Instantiate(_brokenRocket, transform.position, transform.rotation);
+        }
 
         Destroy(gameObject);
     }

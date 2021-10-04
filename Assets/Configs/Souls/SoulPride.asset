@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba78d66889e59044bdbbcb57004255f, type: 3}
   m_Name: SoulPride
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: ee5f411322de11e48bd192285df1d639, type: 3}
+  _glife: {fileID: 21300000, guid: 34249b49e51c1bb48a600df878ff608e, type: 3}
+  _sprite: {fileID: 21300000, guid: 5bedcc46a83c57c43b0631f2c916f747, type: 3}
   _sinType: 0

@@ -6,8 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class MenuUIManager : MonoBehaviour
 {
+    private void Start()
+    {
+        AudioManager.Play("MenuBackground");
+    }
+
     public void StartGame()
     {
+        AudioManager.Stop("MenuBackground");
         SceneManager.LoadScene("Game");
     }
 

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba78d66889e59044bdbbcb57004255f, type: 3}
   m_Name: SoulEnvy
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: a2acaec12cf3598489feb12e6adbafb9, type: 3}
+  _glife: {fileID: 21300000, guid: 15261ed53a84bc04a95c0a535ac099b2, type: 3}
+  _sprite: {fileID: 21300000, guid: 717c05357ab88a54ba879a2bdc8f416e, type: 3}
   _sinType: 3
